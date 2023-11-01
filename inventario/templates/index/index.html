@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+  <div>
+    <h4 id="date-time" style="font-size: 1.2rem;">Fecha y Hora Actuales</h4>
+ </div>
+<script>
+    function updateDateTime() {
+        const dateTimeElement = document.getElementById("date-time");
+        const currentDate = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const formattedDate = currentDate.toLocaleString('es', options);
+        dateTimeElement.textContent = formattedDate;
+    }
+
+    updateDateTime(); // Llamar a la función una vez para mostrar la fecha inicial
+    setInterval(updateDateTime, 1000); // Actualizar la fecha y hora cada segundo
+</script>
+
+    <h2>BIENVENIDO AL SISTEMA DE INVENTARIO</h2>
+    <hr>
+    <div style="text-align: center;">
+        <div style="background-color: #65F309; width: 200px; height: 200px; border-radius: 5px; display: inline-block; margin-right: 20px;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                <strong>Articulos:</strong> {{ num_articulos }}
+            </div>
+        </div>
+        <div style="background-color: #EFF309; width: 200px; height: 200px; border-radius: 5px; display: inline-block;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                <strong>Usuarios:</strong> {{ num_usuarios }}
+            </div>
+        </div>
+        <div style="clear: both;"></div> <!-- Asegura que los elementos debajo de los cuadros no se solapen -->
+        <div style="margin: 20px auto; background-color: #F30965; width: 400px; height: 200px; border-radius: 5px; text-align: center;">
+            <p style="margin: 0; line-height: 200px;">Has visitado esta página {{ num_visits }}{% if num_visits == 1 %} time{% else %} veces{% endif %}.</p>
+        </div>
+    </div>
+
+    GRUPO06
+<hr>
+Ayala Cabrera Willians 
+<hr>
+Arcos García Mervi Iván
+<hr>
+Gomez Cachay Sarahi Brigitte
+<hr>
+Huamán Guerrero Lili Yanina
+<hr>
+Montalvan Ramos Jesús Alexander
+<hr>
+Ventura Custodio Robert
+
+{% endblock content %}
+

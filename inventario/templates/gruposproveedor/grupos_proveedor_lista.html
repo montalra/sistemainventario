@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+    <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Lista de Grupos de Proveedores</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        <a class="btn btn-primary col-2 btn-sm" href="{% url 'nuevo_grupos_proveedor' %}">Agregar</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Código de Grupo</th>
+                                        <th>Descripción</th>
+                                        <th>Empresa</th>
+                                        <th>Activo</th>
+                                        <th>Responsable</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for grupos_proveedor in object_list %}
+                                    <tr>
+                                        <td>{{ grupos_proveedor.codigo_grupo }}</td>
+                                        <td>{{ grupos_proveedor.grupo_descripcion }}</td>
+                                        <td>{{ grupos_proveedor.empresa_Id }}</td>
+                                        <td>{% if grupos_proveedor.activo %}Sí{% else %}No{% endif %}</td>
+                                        <td>{{ grupos_proveedor.persona }}</td>
+                                        <td>
+                                            <a href="{% url 'grupos_proveedor_actualizar'  pk=grupos_proveedor.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="{% url 'grupos_proveedor_eliminar'  pk=grupos_proveedor.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

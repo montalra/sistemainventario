@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+<main>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Nuevo Inventario</h1>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="POST" class="post-form">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit " class="btn btn-danger btn-col-2 btn-sm">
+                                <a class="btn btn-danger btn-col-2 btn-sm" href="{% url 'inventario_lista' %}">Regresar</a>
+                            </button>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+
+        </div>
+    </div>        
+    
+</main>
+
+{% endblock %}

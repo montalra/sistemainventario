@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="row justify-content-center">
+        <div class="col-md-15">
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Lista de Inventario</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        <a class="btn btn-primary col-2 btn-sm" href="{% url 'nuevo_inventario' %}"> Agregar </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha de Inventario</th>
+                                        <th>Nro de inventario</th>
+                                        <th>Hora de inicio</th>
+                                        <th>Hora fin </th>
+                                        <th>Total de Inventario </th>
+                                        <th>Estado</th>
+                                        <th>Creado por: </th>
+                                        <th>Fecha de Creacion</th>                                      
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+            
+                                <tbody>
+                                    {% for inventarios in object_list %}
+                                    <tr>
+                                        <td>{{inventarios.fecha_inventario}}</td>
+                                        <td>{{inventarios.nro_inventario }}</td>
+                                        <td>{{inventarios.hora_inicio }}</td>
+                                        <td>{{inventarios.hora_fin }}</td>
+                                        <td>{{inventarios.total_inventario}}</td>
+                                        <td>{{inventarios.estado }}</td>
+                                        <td>{{inventarios.creado_por }}</td>
+                                        <td>{{inventarios.fecha_creacion }}</td>
+
+                                        <td>
+                                            <a href="{% url 'inventario_actualizar' pk=inventarios.pk %}"
+                                                class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="{% url 'inventario_eliminar' pk=inventarios.pk %}"
+                                                class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    
+</main>
+
+{% endblock %}
